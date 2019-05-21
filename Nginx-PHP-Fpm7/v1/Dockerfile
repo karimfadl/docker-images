@@ -9,13 +9,13 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
 RUN yum -y update
 
 # tools
-RUN yum -y install epel-release iproute at curl crontabs git vim net-tools python-pip
+RUN yum -y install epel-release iproute at curl crontabs git vim net-tools python-pip zip unzip
 
 # Install Nginx
 RUN yum -y install nginx
 
 # Install PHP 7
-RUN yum --enablerepo=remi,remi-php70 install php-opcache php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml php-fpm -y
+RUN yum --enablerepo=remi,remi-php70 install php-opcache php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pgsql php-pecl-mongodb php-pecl-redis php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml php-fpm php-intl -y
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php
