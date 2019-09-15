@@ -21,10 +21,6 @@ RUN yum --enablerepo=remi,remi-php70 install php-opcache php-pecl-apcu php-cli p
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
-# Config standard error to be the error log
-RUN ln -sf /dev/stderr /var/log/nginx/error.log
-RUN ln -sf /dev/stderr /var/log/php-fpm/error.log
-
 # Install supervisor
 RUN yum -y install supervisor
 RUN pip install supervisor-stdout
