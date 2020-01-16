@@ -18,10 +18,12 @@ RUN yum -y install httpd mod_ssl
 RUN yum --enablerepo=remi-php72 install -y php php-cli php-common php-gd php-json php-mbstring php-mysqlnd php-opcache php-pdo php-pear php-pecl-apcu php-pecl-igbinary php-pecl-mcrypt php-pecl-memcached php-pecl-msgpack php-pecl-mysql php-pecl-redis php-pecl-zip php-process php-snmp php-soap php-xml php-bcmath runtime
 
 # we want some config changes
-COPY v-host.conf /etc/httpd/conf.d/
-
+COPY ./files/v-host.conf /etc/httpd/conf.d/ 
+COPY ./files/entrypoint.sh /entrypoint.sh 
 COPY src/ /var/www/html/
+RUN chmod 777 /entrypoint.sh
 
 EXPOSE 80
 
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
