@@ -19,11 +19,8 @@ RUN yum --enablerepo=remi-php72 install -y php php-cli php-common php-gd php-jso
 
 # we want some config changes
 COPY ./files/v-host.conf /etc/httpd/conf.d/ 
-COPY ./files/entrypoint.sh /entrypoint.sh 
 COPY src/ /var/www/html/
-RUN chmod 777 /entrypoint.sh
 
 EXPOSE 80
 
-ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
